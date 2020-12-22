@@ -12,9 +12,9 @@ services:
     depends_on:
       - db
   db:
-    image: docker.io/bitnami/postgresql:12-debian-10
+    image: 'docker.io/bitnami/postgresql:12-debian-10'
     volumes:
-      - postgres_data:/bitnami/postgresql
+      - 'postgres_data:/bitnami/postgresql'
     environment:
       - POSTGRESQL_USERNAME=hello_django
       - POSTGRESQL_PASSWORD=hello_django
