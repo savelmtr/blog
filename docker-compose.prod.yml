@@ -21,12 +21,14 @@ services:
     env_file:
       - ./.env.prod.db
   nginx:
-    build: ./nginx
+    image: 'docker.io/bitnami/nginx:latest'
+    #build: ./nginx
     volumes:
+      - ./nginx/nginx.conf:/opt/bitnami/nginx/conf/server_blocks/blog.conf:ro
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
-      - 1337:80
+      - 1337:8080
     depends_on:
       - web
 volumes:
