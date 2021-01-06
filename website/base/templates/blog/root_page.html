@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+
+{% block content %}
+
+<!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto" id='postlist'>
+        <div class="post-preview" v-for='post in posts'>
+          <a v-bind:href="post.href">
+            <h2 class="post-title">
+              {% templatetag openvariable %} post.title {% templatetag closevariable %}
+            </h2>
+            <h3 class="post-subtitle">
+              {% templatetag openvariable %} post.subtitle {% templatetag closevariable %}
+            </h3>
+          </a>
+          <p class="post-meta"> 
+          	{% templatetag openvariable %} post.meta {% templatetag closevariable %}
+          </p>
+        </div>
+        <hr>
+
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+	let postlist = new Vue({
+		el: '#postlist',
+		data: {
+			posts: [
+			{	
+				href: 'post.html',
+				title: 'Man must explore, and this is exploration at its greatest',
+				subtitle: 'Problems look mighty small from 150 miles up',
+				meta: 'Posted on September 24, 2019'
+			},
+			{
+				href: 'post.html',
+				title: 'I believe every human has a finite number of heartbeats. I don\'t intend to waste any of mine.',
+				meta: 'Posted on September 18, 2019',
+			}
+			]
+		},
+	});
+</script>
+{% endblock %}

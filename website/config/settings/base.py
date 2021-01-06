@@ -31,7 +31,7 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 # Application definition
 
 INSTALLED_APPS = [
-    'home',
+    'blog',
     'search',
 
     'wagtail.contrib.forms',
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',
+    'wagtailmetadata',
 ]
 
 MIDDLEWARE = [
