@@ -12,3 +12,5 @@ local.py
 env/
 .env.prod.db
 .env.prod
+.env.email
+startbootstrap-clean-blog/
