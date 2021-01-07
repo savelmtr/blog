@@ -2,6 +2,14 @@
 
 {% load wagtailcore_tags %}
 {% load i18n %}
+{% load wagtailimages_tags %}
+
+{% block head_style %}
+  {% if page.image %}
+    {% image page.image fill-1900x600 format-jpeg as tmp_photo %}
+    background-image: url('{{ tmp_photo.url }}')
+  {% endif %}
+{% endblock %}
 
 {% block heading %}
 <div class="site-heading">
@@ -44,46 +52,29 @@
 {% endblock %}
 
 {% block extra_js %}
-<!-- {% url 'api:blog_pages_list' %} -->
 <script>
-	let postlist = new Vue({
-		el: '#postlist',
-		data: {
+  let posts = {
+    el: '#postlist',
+    data: {
       current_page: 1,
       total_pages: {{ total_pages }},
-			posts: [
-			{% for p in posts %}
-				{
-					url: '{% pageurl p %}',
-					title: '{{ p.title|escapejs }}',
-					subtitle: '{{ p.subtitle|escapejs }}',
-					meta: '{% translate "Posted on" %} {{ p.date|date:"DATE_FORMAT" }}',
-				},
-			{% endfor %}
-			]
-		},
-		methods: {
-    	scroll_yielder() {
-        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight-100) {
-          if (this.current_page < this.total_pages) {
-            this.current_page = ++this.current_page;
-            let vm = this;
-            axios.get(`{% url 'api:blog_pages_list' %}?page=${vm.current_page}`)
-            .then((r) => { vm.posts = vm.posts.concat(r.data.results); })
-            .catch((err) => { console.log(err); });
-          }
-        }
-	    },
-	  },
-    mounted() {
-      this.$nextTick(() => {
-        document.addEventListener('scroll', this.scroll_yielder);
-      });
+      posts: [
+      {% for p in posts %}
+        {
+          url: '{% pageurl p %}',
+          title: '{{ p.title|escapejs }}',
+          subtitle: '{{ p.subtitle|escapejs }}',
+          meta: '{% translate "Posted on" %} {{ p.date|date:"DATE_FORMAT" }}',
+        },
+      {% endfor %}
+      ]
     },
-    destroyed() {
-      document.removeEventListener('scroll', this.scroll_yielder);
+    computed: {
+      request_url() {
+        return `{% url 'api:blog_pages_list' %}?page=${this.current_page}`
+      }
     },
-	});
-
+  }
+  let postlist = new Vue(Object.assign(PostListMixin, posts));
 </script>
 {% endblock %}

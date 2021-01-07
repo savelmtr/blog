@@ -1,4 +1,5 @@
 {% load wagtailcore_tags %}
+{% load i18n %}
 
 <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -15,6 +16,20 @@
             <a class="nav-link" href="{% pageurl item.page %}">{{ item.page.title }}</a>
           </li>
       	{% endfor %}
+          <li class="nav-item" id='searchbox'>
+            <a class="nav-link" href="#" v-if='open_link' v-on:click.prevent='OpenSearch'><i class="fa fa-search"></i> {% translate "Search" %}</a>
+            
+              <form action="{% url "search" %}" method="get" v-if='search_line'>
+                <div class="d-inline-flex flex-nowrap align-items-center" >
+                <a class="nav-link" href="#" role='submit' style="color:white;" v-on:click.prevent='CloseSearch'><i class="fa fa-times"></i></a>
+
+                <input class='form-control' type="text" name="query" {% if search_query %} value="{{ search_query }}"{% endif %}>
+                
+                <a class="nav-link" role='submit' href="#" v-on:click.prevent="sendform" style="color:white;"><i class="fa fa-search"></i></a>
+                </div>
+              </form>
+            
+          </li>
         </ul>
       </div>
     </div>
