@@ -3,3 +3,4 @@ wagtail
 psycopg2-binary
 gunicorn
 wagtail-metadata
+djangorestframework

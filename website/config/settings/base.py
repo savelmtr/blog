@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base',
     'wagtailmetadata',
+    'rest_framework',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.settings',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -127,6 +131,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REST Framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

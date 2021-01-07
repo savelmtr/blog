@@ -1,34 +1,25 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.template.response import TemplateResponse
 
-from wagtail.core.models import Page
-from wagtail.search.models import Query
+from .services import make_search_query
 
 
-def search(request):
-    search_query = request.GET.get('query', None)
-    page = request.GET.get('page', 1)
+class Search(View):
 
-    # Search
-    if search_query:
-        search_results = Page.objects.live().search(search_query)
-        query = Query.get(search_query)
+    template_name = 'search/search.html'
 
-        # Record hit
-        query.add_hit()
-    else:
-        search_results = Page.objects.none()
+    def get(self, request, *args, **kwargs):
 
-    # Pagination
-    paginator = Paginator(search_results, 10)
-    try:
-        search_results = paginator.page(page)
-    except PageNotAnInteger:
-        search_results = paginator.page(1)
-    except EmptyPage:
-        search_results = paginator.page(paginator.num_pages)
+        search_query = request.GET.get('query', None)
+        search_results = make_search_query(search_query)[:settings.REST_FRAMEWORK['PAGE_SIZE']]
+        count = make_search_query(search_query).count()
+        total_pages = (
+            count // settings.REST_FRAMEWORK['PAGE_SIZE'] 
+            + (1 if count % settings.REST_FRAMEWORK['PAGE_SIZE'] else 0)
+        )
 
-    return TemplateResponse(request, 'search/search.html', {
-        'search_query': search_query,
-        'search_results': search_results,
-    })
+        return TemplateResponse(request, self.template_name, {
+            'total_pages': total_pages,
+            'search_query': search_query,
+            'search_results': search_results,
+        })

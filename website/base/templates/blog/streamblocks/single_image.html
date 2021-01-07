@@ -1,0 +1,7 @@
+{% load wagtailimages_tags %}
+
+<a href="{{ self.url }}">
+	{% image self.image max-700x700 format-jpeg as tmp_photo %}
+	<img class="img-fluid" src="{{ tmp_photo.url }}" alt="{{ tmp_photo.alt }}">
+</a>
+<span class="caption text-muted">{{ self.caption }}</span>

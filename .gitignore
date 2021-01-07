@@ -14,3 +14,4 @@ env/
 .env.prod
 .env.email
 startbootstrap-clean-blog/
+mediafiles/

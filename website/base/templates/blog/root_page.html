@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags %}
+{% load i18n %}
 
+{% block heading %}
+<div class="site-heading">
+  <h1>{{ page.title }}</h1>
+  <span class="subheading">{{ page.subtitle }}</span>
+</div>
+{% endblock %}
 
 {% block content %}
 
@@ -10,7 +17,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto" id='postlist'>
         <div class="post-preview" v-for='post in posts'>
-          <a v-bind:href="post.href">
+          <a v-bind:href="post.url">
             <h2 class="post-title">
               {% templatetag openvariable %} post.title {% templatetag closevariable %}
             </h2>
@@ -22,12 +29,14 @@
           	{% templatetag openvariable %} post.meta {% templatetag closevariable %}
           </p>
         </div>
-        <hr>
 
+        {% comment %}
+        <hr>
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          <a class="btn btn-primary float-right" href="#" v-on:click.prevent="morePosts">Older Posts &rarr;</a>
         </div>
+        {% endcomment %}
       </div>
     </div>
   </div>
@@ -35,24 +44,46 @@
 {% endblock %}
 
 {% block extra_js %}
+<!-- {% url 'api:blog_pages_list' %} -->
 <script>
 	let postlist = new Vue({
 		el: '#postlist',
 		data: {
+      current_page: 1,
+      total_pages: {{ total_pages }},
 			posts: [
-			{	
-				href: 'post.html',
-				title: 'Man must explore, and this is exploration at its greatest',
-				subtitle: 'Problems look mighty small from 150 miles up',
-				meta: 'Posted on September 24, 2019'
-			},
-			{
-				href: 'post.html',
-				title: 'I believe every human has a finite number of heartbeats. I don\'t intend to waste any of mine.',
-				meta: 'Posted on September 18, 2019',
-			}
+			{% for p in posts %}
+				{
+					url: '{% pageurl p %}',
+					title: '{{ p.title|escapejs }}',
+					subtitle: '{{ p.subtitle|escapejs }}',
+					meta: '{% translate "Posted on" %} {{ p.date|date:"DATE_FORMAT" }}',
+				},
+			{% endfor %}
 			]
 		},
+		methods: {
+    	scroll_yielder() {
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight-100) {
+          if (this.current_page < this.total_pages) {
+            this.current_page = ++this.current_page;
+            let vm = this;
+            axios.get(`{% url 'api:blog_pages_list' %}?page=${vm.current_page}`)
+            .then((r) => { vm.posts = vm.posts.concat(r.data.results); })
+            .catch((err) => { console.log(err); });
+          }
+        }
+	    },
+	  },
+    mounted() {
+      this.$nextTick(() => {
+        document.addEventListener('scroll', this.scroll_yielder);
+      });
+    },
+    destroyed() {
+      document.removeEventListener('scroll', this.scroll_yielder);
+    },
 	});
+
 </script>
 {% endblock %}
