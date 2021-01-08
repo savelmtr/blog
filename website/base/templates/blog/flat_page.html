@@ -2,13 +2,10 @@
 
 {% load wagtailcore_tags %}
 {% load i18n %}
-{% load wagtailimages_tags %}
+
 
 {% block head_style %}
-  {% if page.image %}
-    {% image page.image fill-1900x600 format-jpeg as tmp_photo %}
-    background-image: url('{{ tmp_photo.url }}')
-  {% endif %}
+  {% include "blog/partials/head_style.html" %}
 {% endblock %}
 
 {% block heading %}
