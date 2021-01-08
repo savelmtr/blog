@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto" id='postlist'>
+        <p class="post-meta text-right font-italic mt-0 text-muted">
+          {% blocktrans count count=count%} 
+            Found {{ count }} page.
+            {% plural %}
+            Found {{ count }} pages.
+        {% endblocktrans %}</p>
+        <div class="post-preview" v-for='post in posts'>
+          <a v-bind:href="post.url">
+            <h2 class="post-title">
+              {% templatetag openvariable %} post.title {% templatetag closevariable %}
+            </h2>
+            <h3 class="post-subtitle">
+              {% templatetag openvariable %} post.subtitle {% templatetag closevariable %}
+            </h3>
+          </a>
+          <p class="post-meta"> 
+          	{% templatetag openvariable %} post.meta {% templatetag closevariable %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -8,6 +8,12 @@ EMAIL_PORT = int(os.environ.get("EMAIL_PORT", default=25))
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
 try:
     from .local import *
 except ImportError:

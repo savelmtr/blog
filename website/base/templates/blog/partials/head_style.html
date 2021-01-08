@@ -1,0 +1,6 @@
+{% load clean_blog %}
+
+{% if page.image %}
+	{% webp_image page.image "fill-1900x600" as tmp_photo %}
+	background-image: url('{{ tmp_photo.url }}')
+{% endif %}

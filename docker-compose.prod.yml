@@ -31,6 +31,14 @@ services:
       - 1337:8080
     depends_on:
       - web
+  pgbouncer:
+    image: 'docker.io/edoburu/pgbouncer'
+    depends_on:
+      - db
+    env_file:
+      - ./.env.prod
+  memcached:
+    image: memcached:alpine
 volumes:
   postgres_data:
   static_volume:

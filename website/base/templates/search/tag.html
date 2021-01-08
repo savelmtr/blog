@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load i18n %}
+
+{% block head_style %}
+  {% include "search/partials/head_style.html" %}
+{% endblock %}
+
+{% block heading %}
+<div class="site-heading">
+  <h1>{% translate "Posts by tag:" %} </h1>
+  <span class="subheading"><q>{{ tags }}</q></span>
+</div>
+{% endblock %}
+
+{% block content %}
+  {% include "search/partials/content.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  let posts = {
+    el: '#postlist',
+    data: {
+      current_page: 1,
+      total_pages: {{ total_pages }},
+      posts: [
+      {% for p in results %}
+        {
+          url: '{% pageurl p %}',
+          title: '{{ p.title|escapejs }}',
+          subtitle: '{{ p.specific.subtitle|escapejs }}',
+          meta: '{% translate "Posted on" %} {{ p.specific.date|date:"DATE_FORMAT" }}',
+        },
+      {% endfor %}
+      ]
+    },
+    computed: {
+      request_url() {
+        return `{% url 'api:tag' %}?query={{ tags }}&page=${this.current_page}`;
+      }
+    },
+  }
+  let postlist = new Vue(Object.assign(PostListMixin, posts));
+</script>
+{% endblock %}
