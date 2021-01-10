@@ -31,11 +31,11 @@ dnsbl
 # see config/helo.checks.ini for configuration
 helo.checks
 # see 'haraka -h tls' for config instructions before enabling!
-# tls
+tls
 #
 # AUTH plugins require TLS before AUTH is advertised, see
 #     https://github.com/haraka/Haraka/wiki/Require-SSL-TLS
-# auth/flat_file
+auth/flat_file
 # auth/auth_proxy
 # auth/auth_ldap
 

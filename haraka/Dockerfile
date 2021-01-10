@@ -4,13 +4,11 @@ FROM node:alpine
 # install haraka
 # --no-cache: download package index on-the-fly, no need to cleanup afterwards
 # --virtual: bundle packages, remove whole bundle at once, when done
-RUN apk --no-cache --virtual build-dependencies add \
-    python \
-    make \
-    g++ \
-	&& npm install --quiet --no-progress -g Haraka \
+RUN apk --no-cache --virtual build-dependencies add python make g++ \
+	&& npm install --quiet -g Haraka \
 	&& npm cache clean --force \
-    && apk del build-dependencies
+    && apk del build-dependencies \
+    && apk add openssl
 
 USER node
 
@@ -23,7 +21,9 @@ RUN haraka -i /home/node/haraka
 
 COPY smtp.ini /home/node/haraka/config/smtp.ini
 COPY plugins /home/node/haraka/config/plugins
-COPY host_list /home/node/haraka/config/host_list
+COPY auth_flat_file.ini /home/node/haraka/config/auth_flat_file.ini
+COPY tls_key.pem /home/node/haraka/config/tls_key.pem 
+COPY tls_cert.pem /home/node/haraka/config/tls_cert.pem
 
 EXPOSE 8025
 
