@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  haraka:
+    build: .
+    ports:
+      - 25:8025
+#    depends_on:
+#      - rabbitmq
+#  rabbitmq:
+#    image: rabbitmq:alpine
+#    expose:
+#      - 5672
+#      - 5671
