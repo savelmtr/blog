@@ -4,10 +4,12 @@ services:
     build: .
     ports:
       - 25:8025
-#    depends_on:
-#      - rabbitmq
-#  rabbitmq:
-#    image: rabbitmq:alpine
-#    expose:
-#      - 5672
-#      - 5671
+    environment:
+      - MAIL_USER=user1
+      - MAIL_PASSWORD=pass1
+      - TLS_KEY_C=RU
+      - TLS_KEY_ST=Moscow
+      - TLS_KEY_L=Moscow
+      - TLS_KEY_O=
+      - TLS_KEY_OU=
+      - TLS_KEY_CN=example.com

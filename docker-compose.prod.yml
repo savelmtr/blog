@@ -36,9 +36,15 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env.prod
+      - ./.env.pgbouncer
   memcached:
     image: memcached:alpine
+  haraka:
+    build: ./haraka
+    ports:
+      - 25:8025
+    env_file:
+      - ./.env.haraka
 volumes:
   postgres_data:
   static_volume:

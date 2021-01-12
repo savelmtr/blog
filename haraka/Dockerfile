@@ -17,21 +17,14 @@ RUN mkdir /home/node/.npm-global \
 ENV PATH=/home/node/.npm-global/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
-RUN haraka -i /home/node/haraka \
-	&& touch /home/node/haraka/config/loglevel \
-	&& echo 'DEBUG' > /home/node/haraka/config/loglevel \
-	&& openssl req -x509 -nodes -days 2190 -newkey rsa:2048 \
-        -keyout /home/node/haraka/config/tls_key.pem -out /home/node/haraka/config/tls_cert.pem \
-        -subj "/C=RU/ST=Moscow/L=Moscow/O=/OU=/CN=example.com"
+RUN haraka -i /home/node/haraka 
 
 COPY smtp.ini /home/node/haraka/config/smtp.ini
 COPY plugins /home/node/haraka/config/plugins
-COPY auth_flat_file.ini /home/node/haraka/config/auth_flat_file.ini
-# COPY tls_key.pem /home/node/haraka/config/tls_key.pem 
-# COPY tls_cert.pem /home/node/haraka/config/tls_cert.pem
-# COPY rabbitmq.ini /home/node/haraka/config/rabbitmq.ini
+COPY entrypoint.sh /home/node/entrypoint.sh
 
 EXPOSE 8025
 
-CMD ["haraka", "-c", "/home/node/haraka"]
+ENTRYPOINT ["/home/node/entrypoint.sh"]
 
+CMD ["haraka", "-c", "/home/node/haraka"]
