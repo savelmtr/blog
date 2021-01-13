@@ -11,9 +11,9 @@ def get_root(context):
 
 @register.simple_tag(takes_context=True)
 def webp_image(context, img, token):
-	format = 'format-jpeg'
-	if 'webp,image' in context['request'].META['HTTP_ACCEPT']:
-		format = 'format-webp'
-	token = token.split()
-	token.append(format)
-	return img.get_rendition('|'.join(token))
+    format = 'format-jpeg'
+    if 'webp,image' in context['request'].META['HTTP_ACCEPT']:
+        format = 'format-webp'
+    token = token.split()
+    token.append(format)
+    return img.get_rendition('|'.join(token))

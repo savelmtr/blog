@@ -7,10 +7,12 @@ from search.services import make_search_query, get_pages_by_tags
 
 class BlogPagesListView(generics.ListAPIView):
     serializer_class = BlogPageSerializer
-    
+
     def get(self, request):
-        self.queryset = (BlogPage.objects.live()
-            .descendant_of(Site.find_for_request(request).root_page))
+        self.queryset = (
+            BlogPage.objects.live()
+            .descendant_of(Site.find_for_request(request).root_page)
+        )
         return super().get(request)
 
 

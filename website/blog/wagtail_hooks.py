@@ -16,8 +16,8 @@ class ArticleButtonHelper(PageButtonHelper):
 
     def get_buttons_for_obj(self, obj, exclude=None, classnames_add=None,
                             classnames_exclude=None):
-        btns = super().get_buttons_for_obj(obj, exclude=exclude, classnames_add=classnames_add,
-                            classnames_exclude=classnames_exclude)
+        btns = super().get_buttons_for_obj(
+            obj, exclude=exclude, classnames_add=classnames_add, classnames_exclude=classnames_exclude)
         btns.append(self.my_button(url=obj.url))
         return btns
 
@@ -35,5 +35,6 @@ class PostsAdmin(ModelAdmin):
     search_fields = ('title', 'body')
     ordering = ['-date']
     list_per_page = 20
+
 
 modeladmin_register(PostsAdmin)

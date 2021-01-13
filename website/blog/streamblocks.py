@@ -2,6 +2,7 @@ from wagtail.core.blocks import CharBlock, StructBlock, TextBlock, URLBlock
 from wagtail.images.blocks import ImageChooserBlock
 from django.utils.translation import gettext_lazy as _
 
+
 class SectionHeading(CharBlock):
 
     class Meta:
@@ -14,6 +15,7 @@ class Blockquote(TextBlock):
     class Meta:
         label = _('Blockquote')
         template = 'blog/streamblocks/blockquote.html'
+
 
 class SingleImg(StructBlock):
     image = ImageChooserBlock(_('Image'))

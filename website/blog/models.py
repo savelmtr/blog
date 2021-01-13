@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from search.services import count_pages
 from taggit.models import Tag as TaggitTag
 from taggit.models import TaggedItemBase
 from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
@@ -23,7 +24,6 @@ from wagtailmetadata.models import MetadataPageMixin
 
 from .streamblocks import Blockquote, SectionHeading, SingleImg
 
-
 class BaseFieldsMixin(models.Model):
     image = models.ForeignKey(
         'wagtailimages.Image', blank=True, null=True, on_delete=models.SET_NULL, related_name='+'
@@ -33,6 +33,7 @@ class BaseFieldsMixin(models.Model):
         FieldPanel('subtitle'),
         ImageChooserPanel('image'),
     ]
+
     class Meta:
         abstract = True
 
@@ -61,15 +62,11 @@ class RootPage(BaseFieldsMixin, MetadataPageMixin, Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        query = (BlogPage.objects.live()
-            .descendant_of(self)[:settings.REST_FRAMEWORK['PAGE_SIZE']])
-        count = BlogPage.objects.live().descendant_of(self).count()
-        total_pages = (
-            count // settings.REST_FRAMEWORK['PAGE_SIZE'] 
-            + (1 if count % settings.REST_FRAMEWORK['PAGE_SIZE'] else 0)
-        )
+        per_page = settings.REST_FRAMEWORK['PAGE_SIZE']
+        que = BlogPage.objects.live().descendant_of(self)
+        total_pages = count_pages(que.count(), per_page)
         context.update(
-            {'posts': query, 'total_pages': total_pages})
+            {'posts': que[:per_page], 'total_pages': total_pages})
 
         return context
 
@@ -84,9 +81,9 @@ class BlogPage(BodyMixin, BaseFieldsMixin, MetadataPageMixin, Page):
         FieldRowPanel([
             MultiFieldPanel([StreamFieldPanel('body'), ], classname='col8'),
             MultiFieldPanel(
-                [   
+                [
                     FieldPanel('subtitle'),
-                    ImageChooserPanel('image'), 
+                    ImageChooserPanel('image'),
                     FieldPanel('tags'),
                     FieldPanel('date'),
                 ], classname='col4'),
@@ -106,7 +103,7 @@ class FlatPage(BodyMixin, BaseFieldsMixin, MetadataPageMixin, Page):
         FieldRowPanel([
             MultiFieldPanel([StreamFieldPanel('body'), ], classname='col8'),
             MultiFieldPanel(
-                [   
+                [
                     FieldPanel('subtitle'),
                     ImageChooserPanel('image')
                 ], classname='col4'),
@@ -114,6 +111,7 @@ class FlatPage(BodyMixin, BaseFieldsMixin, MetadataPageMixin, Page):
     ]
 
     search_fields = Page.search_fields + BodyMixin.search_fields
+
 
 class PageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -170,6 +168,7 @@ class MenuItem(Orderable):
         verbose_name = _('Menu Item')
         verbose_name_plural = _('Menu Items')
 
+
 @register_setting
 class MainMenu(ClusterableModel, BaseSetting):
     home_link_text = models.CharField(_('Home Link Text'), max_length=255)
@@ -178,5 +177,6 @@ class MainMenu(ClusterableModel, BaseSetting):
         FieldPanel('home_link_text'),
         InlinePanel('items', label=_('Menu Items')),
     ]
+
     class Meta:
         verbose_name = _('Main Menu')
