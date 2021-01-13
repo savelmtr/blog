@@ -135,16 +135,11 @@ class FooterSettings(BaseSetting):
         help_text=_('Your Twitter page URL'), blank=True, null=True)
     facebook_url = models.URLField(
         help_text=_('Your Facebook page URL'), blank=True, null=True)
-    #linkedin_url = models.URLField(
-    #    help_text='Your LinkedIn page URL', blank=True, null=True)
     github_url = models.URLField(
         help_text=_('Your GitHub page URL'), blank=True, null=True)
-    #email = models.CharField(
-    #    'Email', default='', max_length=255, help_text='Email', blank=True, null=True)
-    #phone = models.CharField(
-    #    'Phone number', max_length=255, help_text='Phone number', blank=True, null=True)
-    #address = RichTextField('Address', blank=True, null=True)
     copyright = models.CharField(_('Copyright'), max_length=400, blank=True, null=True)
+    unsafe_counters = models.TextField(
+        _("HTML for counters"), help_text=_('Optional'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('Footer Settings')

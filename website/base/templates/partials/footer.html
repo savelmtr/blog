@@ -44,4 +44,7 @@
       </div>
     </div>
   </footer>
+{% if settings.blog.FooterSettings.unsafe_counters %}
+	{{ settings.blog.FooterSettings.unsafe_counters|safe }}
+{% endif %}
 {% endcache %}

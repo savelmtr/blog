@@ -19,12 +19,10 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 RUN haraka -i /home/node/haraka 
 
-COPY smtp.ini /home/node/haraka/config/smtp.ini
-COPY plugins /home/node/haraka/config/plugins
-COPY entrypoint.sh /home/node/entrypoint.sh
+COPY config/* /home/node/haraka/config/
 
 EXPOSE 8025
 
-ENTRYPOINT ["/home/node/entrypoint.sh"]
+ENTRYPOINT ["/home/node/haraka/config/entrypoint.sh"]
 
 CMD ["haraka", "-c", "/home/node/haraka"]

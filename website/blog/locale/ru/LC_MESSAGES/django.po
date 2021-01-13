@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-13 20:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: models.py:31
+msgid "Subtitle"
+msgstr "Подзаголовок"
+
+#: models.py:43
+msgid "Text"
+msgstr "Текст"
+
+#: models.py:81
+msgid "Date"
+msgstr "Дата"
+
+#: models.py:135
+msgid "Your Twitter page URL"
+msgstr "URL страницы в Твиттере"
+
+#: models.py:137
+msgid "Your Facebook page URL"
+msgstr "URL страницы в Фейсбуке"
+
+#: models.py:141
+msgid "Your GitHub page URL"
+msgstr "URL страницы на Гитхабе"
+
+#: models.py:147
+msgid "HTML for counters"
+msgstr "HTML для счётчиков"
+
+#: models.py:147
+#, fuzzy
+#| msgid "Caption"
+msgid "Optional"
+msgstr "Подпись к изображению"
+
+#: models.py:148
+msgid "Copyright"
+msgstr "Копирайт"
+
+#: models.py:151
+msgid "Footer Settings"
+msgstr "Настройки футера"
+
+#: models.py:176
+msgid "Menu Item"
+msgstr "Элемент меню"
+
+#: models.py:177 models.py:185
+msgid "Menu Items"
+msgstr "Элементы меню"
+
+#: models.py:181
+msgid "Home Link Text"
+msgstr "Текст ссылки на главную страницу"
+
+#: models.py:188
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: streamblocks.py:8
+msgid "Section Heading"
+msgstr "Заголовок"
+
+#: streamblocks.py:15
+msgid "Blockquote"
+msgstr "Цитата"
+
+#: streamblocks.py:19
+msgid "Image"
+msgstr "Изображение"
+
+#: streamblocks.py:20
+msgid "URL"
+msgstr "URL"
+
+#: streamblocks.py:21
+msgid "Caption"
+msgstr "Подпись к изображению"
+
+#: streamblocks.py:24
+msgid "Single Image"
+msgstr "Изображение"
+
+#: templates/modeladmin/blog/blogpage/choose_parent.html:28
+msgid "Choose a parent page"
+msgstr "Выберите родительскую страницу"
+
+#: templates/modeladmin/blog/blogpage/choose_parent.html:29
+#, python-format
+msgid ""
+"%(plural)s can be added to more than one place within your site. Which of "
+"the following would you like to be the parent of your new page?"
+msgstr ""
+"%(plural)s может быть добавлен более, чем в одно место вашего сайта. Какие "
+"изстраниц вы бы хотели сделать родительскими для вашей новой страницы?"
+
+#: templates/modeladmin/blog/blogpage/choose_parent.html:37
+msgid "Continue"
+msgstr "Продолжить"
+
+#: templates/modeladmin/blog/blogpage/create.html:38
+#: templates/modeladmin/blog/blogpage/edit.html:8
+msgid "Saving…"
+msgstr "Сохранение..."
+
+#: templates/modeladmin/blog/blogpage/create.html:39
+#: templates/modeladmin/blog/blogpage/edit.html:9
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/modeladmin/blog/blogpage/delete.html:15
+#, python-format
+msgid "%(model_name)s could not be deleted"
+msgstr "%(model_name)s не может быть удален"
+
+#: templates/modeladmin/blog/blogpage/delete.html:16
+#, python-format
+msgid ""
+"'%(instance_name)s' is currently referenced by other objects, and cannot be "
+"deleted without jeopardising data integrity. To delete it successfully, "
+"first remove references from the following objects, then try again:"
+msgstr ""
+"На '%(instance_name)s' в данный момент ссылаются другие объекты, и он не "
+"можетбыть удалён без риска для целостности данных. Чтобы успешно его "
+"удалить, сначала удалите ссылки на него из следующих объектов, и попробуйте "
+"снова:"
+
+#: templates/modeladmin/blog/blogpage/delete.html:20
+msgid "Go back to listing"
+msgstr "Назад к списку"
+
+#: templates/modeladmin/blog/blogpage/delete.html:25
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: templates/modeladmin/blog/blogpage/delete.html:26
+msgid "No, don't delete"
+msgstr "Нет, не удалять"
+
+#: templates/modeladmin/blog/blogpage/edit.html:15
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/modeladmin/blog/blogpage/includes/breadcrumb.html:3
+msgid "Home"
+msgstr "Домой"
+
+#: templates/modeladmin/blog/blogpage/includes/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr " По %(filter_title)s "
+
+#: templates/modeladmin/blog/blogpage/includes/result_list.html:23
+#, python-format
+msgid "Sorry, there are no %(name)s matching your search parameters."
+msgstr ""
+"К сожалению, не найдено %(name)s, соответствующих вашему поисковому запросу."
+
+#: templates/modeladmin/blog/blogpage/includes/search_form.html:7
+msgid "Search for"
+msgstr "Поиск"
+
+#: templates/modeladmin/blog/blogpage/includes/search_form.html:10
+#, python-format
+msgid "Search %(name)s"
+msgstr "Искать %(name)s"
+
+#: templates/modeladmin/blog/blogpage/index.html:46
+msgid "Filter"
+msgstr "Фильтр"
+
+#: templates/modeladmin/blog/blogpage/index.html:57
+#, python-format
+msgid ""
+"No %(name)s have been created yet. One of the following must be created "
+"before you can add any %(name)s:"
+msgstr ""
+"Пока ни один %(name)s ещё не был создан. Следующие объекты должны быть "
+"созданы перед тем, как добавлять %(name)s:"
+
+#: templates/modeladmin/blog/blogpage/index.html:62
+#, python-format
+msgid "No %(name)s have been created yet."
+msgstr "Ещё ни один %(name)s не был создан."
+
+#: templates/modeladmin/blog/blogpage/index.html:64
+#, python-format
+msgid ""
+"\n"
+"                                                Why not <a href=\"%(url)s"
+"\">add one</a>?\n"
+"                                            "
+msgstr ""
+"\n"
+"                                                Почему бы не <a href="
+"\"%(url)s\">добавить</a>?\n"
+"                                            "
+
+#: templates/modeladmin/blog/blogpage/index.html:77
+msgid "Pagination"
+msgstr "Разбиение по страницам"
+
+#: templates/modeladmin/blog/blogpage/index.html:78
+#, python-format
+msgid "Page %(current_page)s of %(num_pages)s."
+msgstr "Страница %(current_page)s из %(num_pages)s."
+
+#: templates/modeladmin/blog/blogpage/inspect.html:26
+#, python-format
+msgid "Back to %(model_name)s list"
+msgstr "Назад к списку %(model_name)s"
+
+#: templatetags/admin_tags.py:112
+msgid "Previous"
+msgstr "Предыдущая"
+
+#: templatetags/admin_tags.py:125
+msgid "Next"
+msgstr "Следующая"
+
+#: wagtail_hooks.py:12 wagtail_hooks.py:14
+msgid "Frontend version"
+msgstr "Смотреть на сайте"
+
+#: wagtail_hooks.py:28
+msgid "Blog Posts"
+msgstr "Посты"
