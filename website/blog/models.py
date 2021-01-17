@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from search.services import count_pages
 from taggit.models import Tag as TaggitTag
 from taggit.models import TaggedItemBase
 from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
@@ -22,6 +21,7 @@ from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtailmetadata.models import MetadataPageMixin
 
+from .services import count_pages
 from .streamblocks import Blockquote, SectionHeading, SingleImg
 
 class BaseFieldsMixin(models.Model):

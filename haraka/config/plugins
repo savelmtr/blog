@@ -2,7 +2,6 @@ process_title
 dnsbl
 helo.checks
 tls
-# auth/flat_file
 mail_from.is_resolvable
 headers
-relay_acl
+relay

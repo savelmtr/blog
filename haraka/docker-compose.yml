@@ -13,3 +13,4 @@ services:
       - TLS_KEY_O=
       - TLS_KEY_OU=
       - TLS_KEY_CN=example.com
+      - NETWORK=172.0.0.0/8

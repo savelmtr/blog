@@ -141,9 +141,9 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = os.environ.get("LANGUAGE_CODE", 'ru')
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = os.environ.get("TIME_ZONE", 'Europe/Moscow')
 
 USE_I18N = True
 
@@ -178,8 +178,8 @@ MEDIA_URL = '/mediafiles/'
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "blog"
+WAGTAIL_SITE_NAME = os.environ.get("WAGTAIL_SITE_NAME", "example")
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = os.environ.get("BASE_URL", 'http://example.com')

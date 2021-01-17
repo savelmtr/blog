@@ -2,7 +2,7 @@ from wagtail.core.models import Page
 from wagtail.search.models import Query
 from wagtail.core.models import Site
 from blog.models import BlogPage
-
+from blog.services import count_pages
 
 def make_search_query(search_query, request):
     # Search
@@ -35,10 +35,6 @@ def get_pages_by_tags(tags, request):
         results = BlogPage.objects.none()
 
     return results
-
-
-def count_pages(count, per_page):
-    return count // per_page + (1 if count % per_page else 0)
 
 
 def get_helper(func, q, request):
