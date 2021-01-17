@@ -142,7 +142,7 @@ class FooterSettings(BaseSetting):
 
 
 class MenuItem(Orderable):
-    parent_page = ParentalKey(
+    menu_entity = ParentalKey(
         'blog.MainMenu',
         blank=True,
         null=True,
