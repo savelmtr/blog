@@ -1,1 +1,0 @@
-./swaks --from fred@example.com --to=my_mail@gmail.com -p 25 --header "Subject: foo" --tls
