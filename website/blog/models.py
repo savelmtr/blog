@@ -1,4 +1,3 @@
-from django import forms
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -11,7 +10,6 @@ from taggit.models import TaggedItemBase
 from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
                                          InlinePanel, MultiFieldPanel,
                                          PageChooserPanel, StreamFieldPanel)
-from wagtail.admin.staticfiles import versioned_static
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.blocks import RichTextBlock
 from wagtail.core.fields import StreamField
