@@ -36,6 +36,7 @@ BASE_URL=
 WAGTAIL_SITE_NAME=
 LANGUAGE_CODE=ru
 TIME_ZONE=Europe/Moscow
+SEARCH_CONFIG=russian
 ```
 ### .env.database
 ```

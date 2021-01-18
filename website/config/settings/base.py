@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.settings',
+    'wagtail.contrib.postgres_search',
 ]
 
 MIDDLEWARE = [
@@ -112,6 +113,12 @@ DATABASES = {
     }
 }
 
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.contrib.postgres_search.backend',
+        'SEARCH_CONFIG': os.environ.get("SEARCH_CONFIG", 'english'),
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
