@@ -1,4 +1,4 @@
-###.env.haraka
+### .env.haraka
 ```
 TLS_KEY_C=RU
 TLS_KEY_ST=City
@@ -8,14 +8,14 @@ TLS_KEY_OU=
 TLS_KEY_CN=example.com
 NETWORK=
 ```
-###.env.pgbouncer
+### .env.pgbouncer
 ```
 DB_USER=
 DB_PASSWORD=
 DB_HOST=db
 DB_NAME=
 ```
-###.env.prod
+### .env.prod
 ```
 DEBUG=0
 SECRET_KEY=
@@ -37,7 +37,7 @@ WAGTAIL_SITE_NAME=
 LANGUAGE_CODE=ru
 TIME_ZONE=Europe/Moscow
 ```
-###.env.database
+### .env.database
 ```
 POSTGRESQL_USERNAME=
 POSTGRESQL_PASSWORD=
