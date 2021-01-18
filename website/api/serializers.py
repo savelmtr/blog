@@ -27,10 +27,10 @@ class SearchPageSerializer(serializers.ModelSerializer):
         rep = super().to_representation(instance)
         rep['subtitle'] = getattr(instance.specific, 'subtitle', None)
         rep['date'] = getattr(instance.specific, 'date', None)
-        if type(rep['date']) == str:
+        if rep['date']:
             rep['meta'] = '{0} {1}'.format(
                 _('Posted on'),
-                formats.date_format(datetime.fromisoformat(rep['date']), "DATE_FORMAT")
+                formats.date_format(datetime.fromisoformat(str(rep['date'])), "DATE_FORMAT")
             )
         return rep
 
