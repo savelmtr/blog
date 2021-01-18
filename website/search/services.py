@@ -3,6 +3,8 @@ from wagtail.search.models import Query
 from wagtail.core.models import Site
 from blog.models import BlogPage
 from blog.services import count_pages
+from django.conf import settings
+
 
 def make_search_query(search_query, request):
     # Search

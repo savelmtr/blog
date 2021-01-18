@@ -1,6 +1,5 @@
 from django.template.response import TemplateResponse
 from django.views import View
-from django.conf import settings
 
 from .services import make_search_query, get_pages_by_tags, get_helper
 
