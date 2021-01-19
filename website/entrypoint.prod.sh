@@ -11,4 +11,16 @@ then
     echo "PostgreSQL started"
 fi
 
+touch /home/app/web/staticfiles/robots.txt
+cat <<EOF > /home/app/web/staticfiles/robots.txt
+# Common rules
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /django-admin/
+Disallow: /search/
+Disallow: /api/
+
+Sitemap: $BASE_URL/sitemap.xml
+EOF
 exec "$@"

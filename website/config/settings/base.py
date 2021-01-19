@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.settings',
     'wagtail.contrib.postgres_search',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
